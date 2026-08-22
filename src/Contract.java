@@ -24,11 +24,11 @@ public class Contract {
     }
 
     public House getHouse() {
-        return house;;
+        return house;
     }
 
     public User getOwner() {
-        return renter;
+        return owner;
     }
 
     public double getPrice() {
