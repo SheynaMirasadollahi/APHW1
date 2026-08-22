@@ -9,20 +9,24 @@ public class Main {
 
         ArrayList<User> users = new ArrayList<>();
         ArrayList<House> houses = new ArrayList<>();
+        ArrayList<Contract> contracts = new ArrayList<>();
 
         int userId = 1;
         int houseId = 1;
+        int contractId = 1;
 
         while (true) {
 
             System.out.println("\n--- Real Estate System ---");
             System.out.println("1. Create User");
-            System.out.println("2.Add Apartment");
+            System.out.println("2. Add Apartment");
             System.out.println("3. Add Villa");
             System.out.println("4.Add Penthouse");
             System.out.println("5. Show Houses");
             System.out.println("6. Show Users");
-            System.out.println("7. Exit");
+            System.out.println("7. Create Contracts");
+            System.out.println("8. Show Contracts");
+            System.out.println("9. Exit");
             System.out.println("Choose: ");
             int choice = input.nextInt();
 
@@ -170,6 +174,35 @@ public class Main {
         }
 
         else if (choice == 7) {
+            System.out.println("House ID: ");
+            int id = input.nextInt();
+
+            System.out.println("Renter User ID: ");
+            int renterId = input.nextInt();
+
+            House selectdHouse = null;
+
+            for (House house : houses) {
+                if (house.getId() == id )
+                    selectdHouse = house;
+            }
+
+            User renter = users.get(renterId - 1);
+
+            Contract contract = new Contract(contractId, selectdHouse, selectdHouse.getOwner(), renter, selectdHouse.calculatePrice(), 12 );
+
+            contracts.add(contract);
+            contractId++;
+            System.out.println("Contract created");
+        }
+
+        else if (choice == 8) {
+            for (Contract contract : contracts)
+                contract.showInfo();
+            System.out.println("-------------");
+        }
+
+        else if (choice == 9) {
             System.out.println("Exit");
             break;
         }

@@ -39,6 +39,10 @@ public class Contract {
         return duration;
     }
 
+    public User getRenter() {
+        return renter;
+    }
+
     public void showInfo() {
 
         System.out.println("Contract ID: " + id);
