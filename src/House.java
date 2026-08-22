@@ -33,7 +33,7 @@ public abstract class House {
         return bedrooms;
     }
 
-    public int bathrooms() {
+    public int getBathrooms() {
         return bathrooms;
     }
     public int getFloor() {
@@ -56,7 +56,7 @@ public abstract class House {
         this.status = status;
     }
 
-    public abstract double calculaterPrice();
+    public abstract double calculatePrice();
 
     public void showInfo() {
         System.out.println("House ID: " + id);
