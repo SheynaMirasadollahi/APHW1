@@ -10,6 +10,7 @@ public class Main {
         ArrayList<User> users = new ArrayList<>();
         ArrayList<House> houses = new ArrayList<>();
         ArrayList<Contract> contracts = new ArrayList<>();
+        Agency agency = new Agency("Real Estate Agency");
 
         int userId = 1;
         int houseId = 1;
@@ -26,7 +27,8 @@ public class Main {
             System.out.println("6. Show Users");
             System.out.println("7. Create Contracts");
             System.out.println("8. Show Contracts");
-            System.out.println("9. Exit");
+            System.out.println("9. Show Agency Houses");
+            System.out.println("10. Exit");
             System.out.println("Choose: ");
             int choice = input.nextInt();
 
@@ -81,6 +83,7 @@ public class Main {
                 Apartment apartment = new Apartment(houseId, area, bedrooms, bathrooms, floor, region, owner,"Sale", Unit, floors, totalUnits);
 
                 houses.add(apartment);
+                agency.addHouse(apartment);
                 houseId++;
                 System.out.println("Apartment added");
             }
@@ -117,6 +120,7 @@ public class Main {
                 Villa villa = new Villa(houseId, area, bedrooms, bathrooms, floor, region, owner, "Sale", landArea, floors);
 
                 houses.add(villa);
+                agency.addHouse(villa);
                 houseId++;
                 System.out.println("Villa added");
             }
@@ -153,6 +157,7 @@ public class Main {
                 Penthouse penthouse = new Penthouse(houseId, area, bedrooms, bathrooms, floor, region, owner, "Sale", terrace, Luxury);
 
                 houses.add(penthouse);
+                agency.addHouse(penthouse);
                 houseId++;
                 System.out.println("Penthouse added");
             }
@@ -202,7 +207,10 @@ public class Main {
             System.out.println("-------------");
         }
 
-        else if (choice == 9) {
+        else if (choice == 9)
+            agency.showHouses();
+
+        else if (choice == 10) {
             System.out.println("Exit");
             break;
         }
