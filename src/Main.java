@@ -3,48 +3,181 @@ import java.util.Scanner;
 
 public class Main {
 
-    static ArrayList<User> users = new ArrayList<>();
-    static ArrayList<House> houses = new ArrayList<>();
-    static ArrayList<Contract> contracts = new ArrayList<>();
-
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
 
+        ArrayList<User> users = new ArrayList<>();
+        ArrayList<House> houses = new ArrayList<>();
+
+        int userId = 1;
+        int houseId = 1;
+
         while (true) {
 
             System.out.println("\n--- Real Estate System ---");
-            System.out.println("1. Show Houses");
-            System.out.println("2. Exit");
+            System.out.println("1. Create User");
+            System.out.println("2.Add Apartment");
+            System.out.println("3. Add Villa");
+            System.out.println("4.Add Penthouse");
+            System.out.println("5. Show Houses");
+            System.out.println("6. Show Users");
+            System.out.println("7. Exit");
             System.out.println("Choose: ");
-
             int choice = input.nextInt();
 
-            if (choice == 1)
-                showHouses();
-            
-            else if (choise == 2) {
-                System.out.println("Goodbye");
-                break;
-            }
+            if (choice == 1) {
+                System.out.println("Username: ");
+                String username = input.next();
 
-            else
-                System.out.println("Invalid choice");
+                System.out.println("Password: ");
+                String password = input.next();
+
+                System.out.println("Balance: ");
+                double Balance = input.nextDouble();
+
+                User user = new User( userId, username, password, Balance);
+
+                users.add(user);
+                userId++;
+                System.out.println("User added");
+            }
+            
+            else if (choice == 2) {
+            if (users.size() == 0)
+                System.out.println("First create a user");
+
+            else {
+                User owner = users.get(0);
+
+                System.out.println("Area: ");
+                double area = input.nextDouble();
+
+                System.out.println("Bedrooms: ");
+                int bedrooms = input.nextInt();
+
+                System.out.println("Bathrooms: ");
+                int bathrooms = input.nextInt();
+
+                System.out.println("Floor: ");
+                int floor = input.nextInt();
+
+                System.out.println("Region: ");
+                int region = input.nextInt();
+
+                System.out.println("Unit number: ");
+                int Unit = input.nextInt();
+
+                System.out.println("Building floors: ");
+                int floors = input.nextInt();
+
+                System.out.println("Total units: ");
+                int totalUnits = input.nextInt();
+
+                Apartment apartment = new Apartment(houseId, area, bedrooms, bathrooms, floor, region, owner,"Sale", Unit, floors, totalUnits);
+
+                houses.add(apartment);
+                houseId++;
+                System.out.println("Apartment added");
+            }
+        }
+
+        else if (choice == 3) {
+            if (users.size() == 0)
+                System.out.println("Craete user first");
+
+            else {
+                User owner = users.get(0);
+
+                System.out.println("Area: ");
+                double area = input.nextDouble();
+
+                System.out.println("Bedrooms: ");
+                int bedrooms = input.nextInt();
+
+                System.out.println("Bathrooms: ");
+                int bathrooms = input.nextInt();
+
+                System.out.println("Floor: ");
+                int floor = input.nextInt();
+
+                System.out.println("Region: ");
+                int region = input.nextInt();
+
+                System.out.println("Land area: ");
+                double landArea = input.nextDouble();
+
+                System.out.println("Floors: ");
+                int floors = input.nextInt();
+
+                Villa villa = new Villa(houseId, area, bedrooms, bathrooms, floor, region, owner, "Sale", landArea, floors);
+
+                houses.add(villa);
+                houseId++;
+                System.out.println("Villa added");
+            }
+        }
+
+        else if (choice == 4) {
+            if (users.size() == 0)
+                System.out.println("Create user first");
+
+            else {
+                User owner = users.get(0);
+
+                System.out.println("Area: ");
+                double area = input.nextDouble();
+
+                System.out.println("Bedrooms: ");
+                int bedrooms = input.nextInt();
+
+                System.out.println("Bathrooms: ");
+                int bathrooms = input.nextInt();
+
+                System.out.println("Floor: ");
+                int floor = input.nextInt();
+
+                System.out.println("Region: ");
+                int region = input.nextInt();
+
+                System.out.println("Terrace area: ");
+                double terrace = input.nextDouble();
+
+                System.out.println("Luxury coefficient: ");
+                double Luxury = input.nextDouble();
+
+                Penthouse penthouse = new Penthouse(houseId, area, bedrooms, bathrooms, floor, region, owner, "Sale", terrace, Luxury);
+
+                houses.add(penthouse);
+                houseId++;
+                System.out.println("Penthouse added");
+            }
+        }
+
+        else if (choice == 5) {
+            for (House house : houses) {
+                house.showInfo();
+                System.out.println("Price:" + house.calculatePrice());
+                System.out.println("-------------");
+            }
+        }
+
+        else if (choice == 6) {
+            for (User user : users) {
+                user.showInfo();
+                System.out.println("--------------");
+            }
+        }
+
+        else if (choice == 7) {
+            System.out.println("Exit");
+            break;
+        }
+
+        else
+            System.out.println("Wrong chice");
         }
 
         input.close();
-    }
-
-    public static void showHouses() {
-
-        if (houses.size() == 0) 
-            System.out.println("No houses available");
-
-        else 
-            for (House house : houses) {
-                
-                house.showInfo();
-                System.out.println("-------------");
-            }
     }
 }
