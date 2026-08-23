@@ -47,8 +47,14 @@ public class Contract {
 
         System.out.println("Contract ID: " + id);
         System.out.println("Price: " + price);
+        System.out.println("Monthly Rent: " + house.calculateMonthlyRent());
         System.out.println("Duration: " + duration + " months");
         System.out.println("Owner: " + owner.getUsername());
         System.out.println("Renter: " + renter.getUsername());
+    }
+
+    public String toFileLine() {
+        return id + "," + house.getId() + "," + owner.getId() + "," 
+        + renter.getId() + "," + price + "," + duration;
     }
 }

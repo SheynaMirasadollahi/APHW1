@@ -6,7 +6,6 @@ public class Agency {
     private ArrayList<House> houses;
 
     public Agency(String name) {
-
         this.name = name;
         this.houses = new ArrayList<>();
     }
@@ -30,10 +29,20 @@ public class Agency {
     public void showHouses() {
         System.out.println("Agency: " + name);
 
-        for (House house : houses) {
+        if (houses.size() == 0) {
+            System.out.println("No houses owned by agency");
+        return;
+        }
+
+        for(House house : houses) {
             house.showInfo();
             System.out.println("-------------");
         }
+    }
+
+    public void buyHouse(House house) {
+        if(!houses.contains(house))
+        houses.add(house);
     }
     
 }

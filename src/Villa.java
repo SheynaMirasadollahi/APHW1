@@ -1,57 +1,48 @@
 public class Villa extends House {
 
+    // FIX: این دو ثابت توی فرمول داک هستن (YardPricePerMeter و FloorPremium) که قبلا اصلا استفاده نمیشدن.
+    private static final double YARD_PRICE_PER_METER = 3000000;
+    private static final double FLOOR_PREMIUM = 20000000;
+
     private double landArea;
     private int floors;
 
-    public Villa (int id, double area, int bedrooms, int bathrooms,
-                  int floor, int region, User owner, String status,
-                  double landArea, int floors) {
+    public Villa(int id, double area, int bedrooms, int bathrooms, int floor, int region, User owner,
+                 String status, double landArea, int floors) {
 
-                    super(id, area, bedrooms, bathrooms, floor, region, owner, status);
+        super(id, area, bedrooms, bathrooms, floor, region, owner, status);
 
-                    this.landArea = landArea;
-                    this.floors = floors;
+        this.landArea = landArea;
+        this.floors = floors;
+    }
 
-                  }
     public double getLandArea() {
         return landArea;
     }
-    
+
     public int getFloors() {
         return floors;
     }
 
     @Override
     public double calculatePrice() {
+        double basePrice = calculateBasePrice();
+        double price = basePrice + (landArea * YARD_PRICE_PER_METER) + (floors * FLOOR_PREMIUM);
 
-        double regionCoefficient = 1;
+        return price;
+    }
 
-        if (getRegion() == 1) 
-            regionCoefficient = 1.8;
-
-        else if  (getRegion() == 2)
-            regionCoefficient = 1.4;
-
-        else if (getRegion() == 3)
-            regionCoefficient = 1.1;
-
-        else if (getRegion() == 4)
-            regionCoefficient = 0.8;
-    
-
-    double basePrice = getArea() * 10000000 * regionCoefficient;
-    double price = basePrice * (1 + 0.05 * floors);
-    
-    return price;
-
-}
     @Override
     public void showInfo() {
-
         super.showInfo();
-
         System.out.println("Land Area: " + landArea);
         System.out.println("Villa Floors: " + floors);
     }
 
+    @Override
+    public String toFileLine() {
+        return "Villa," + getId() + "," + getArea() + "," + getBedrooms() + "," + getBathrooms() + ","
+                + getFloor() + "," + getRegion() + "," + getOwner().getId() + "," + getStatus() + ","
+                + landArea + "," + floors;
+    }
 }
