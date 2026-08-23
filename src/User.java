@@ -64,6 +64,10 @@ public class User {
         rentedHouses.add(house);
     }
 
+    public void removeRentedHouse(House house){
+        rentedHouses.remove(house);
+    }
+
     public void showRentedHouses() {
         if (rentedHouses.size() == 0)
             System.out.println("No rented houses");

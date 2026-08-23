@@ -331,7 +331,7 @@ public class Main {
         System.out.println("House ID: ");
         int id = input.nextInt();
 
-        if (system.sellToAgency(id))
+        if (system.sellToAgency(currentUser.getId(), id))
             System.out.println("House sold to agency");
         else
             System.out.println("House not found");

@@ -1,6 +1,5 @@
 public class Villa extends House {
 
-    // FIX: این دو ثابت توی فرمول داک هستن (YardPricePerMeter و FloorPremium) که قبلا اصلا استفاده نمیشدن.
     private static final double YARD_PRICE_PER_METER = 3000000;
     private static final double FLOOR_PREMIUM = 20000000;
 
